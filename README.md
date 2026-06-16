@@ -27,13 +27,13 @@ Este site foi criado com o objetivo de reunir informações profissionais, proje
 
 Caso o projeto esteja publicado:
 
-[Portfólio Online]()
+[Portfólio Online](https://portifolio-guilhermebitt.vercel.app/)
 
 ## 📸 Preview
 
-```md
-![Preview do Portfólio](./public/preview.png)
-```
+
+![Preview do Portfólio](/public/preview.png)
+
 
 ## ⚙️ Executando Localmente
 
