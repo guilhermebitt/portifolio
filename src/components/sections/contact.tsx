@@ -1,16 +1,39 @@
 import { useState, type FormEvent } from "react";
 import { Github, Instagram, Linkedin, Mail } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
 import { personal } from "@/lib/portfolio-data";
+import { submitContactForm } from "@/lib/contact-form.server";
 
 export function Contact() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
+  const sendContactForm = useServerFn(submitContactForm);
 
-  // Stub submit handler — wire up to an API route or form provider later.
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus("sent");
-    setTimeout(() => setStatus("idle"), 3000);
-    (e.target as HTMLFormElement).reset();
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    setStatus("sending");
+
+    try {
+      await sendContactForm({
+        data: {
+          name: String(formData.get("name") ?? ""),
+          email: String(formData.get("email") ?? ""),
+          message: String(formData.get("message") ?? ""),
+        },
+      });
+
+      setStatus("sent");
+      form.reset();
+      setTimeout(() => setStatus("idle"), 3000);
+    } catch (error) {
+      console.error("Failed to send contact form", error);
+      setStatus("error");
+    }
   };
 
   return (
@@ -33,7 +56,10 @@ export function Contact() {
               <SocialIcon href={personal.socials.linkedin} label="LinkedIn">
                 <Linkedin className="size-4" />
               </SocialIcon>
-              <SocialIcon href={personal.socials.email} label="Email">
+              <SocialIcon
+                href={`mailto:${personal.socials.email}`}
+                label="Email"
+              >
                 <Mail className="size-4" />
               </SocialIcon>
               <SocialIcon href={personal.socials.instagram} label="Instagram">
@@ -64,10 +90,22 @@ export function Contact() {
             />
             <button
               type="submit"
+              disabled={status === "sending"}
               className="w-full py-3 bg-foreground text-background font-bold rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors tracking-wide"
             >
-              {status === "sent" ? "MESSAGE SENT ✓" : "SUBMIT INQUIRY"}
+              {status === "sending"
+                ? "SENDING..."
+                : status === "sent"
+                  ? "MESSAGE SENT ✓"
+                  : status === "error"
+                    ? "TRY AGAIN"
+                    : "SUBMIT INQUIRY"}
             </button>
+            {status === "error" ? (
+              <p className="text-sm text-red-500">
+                Não consegui enviar a mensagem. Verifique as variáveis de ambiente do SMTP.
+              </p>
+            ) : null}
           </form>
         </div>
       </div>
@@ -97,8 +135,8 @@ function SocialIcon({
     <a
       href={href}
       aria-label={label}
-      target="_blank"
-      rel="noreferrer"
+      target={label === "Email" ? undefined : "_blank"}
+      rel={label === "Email" ? undefined : "noreferrer"}
       className="size-10 grid place-items-center rounded-full border border-border bg-surface/60 text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors"
     >
       {children}

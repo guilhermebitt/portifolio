@@ -1,11 +1,31 @@
-import { r as __toESM } from "../_runtime.mjs";
-import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
-import { a as timeline, i as technologies, n as personal, o as useTheme, r as projects } from "./portfolio-data-BF5V7x64.mjs";
-import { a as Linkedin, c as Github, d as Award, f as ArrowUp, i as Mail, l as ExternalLink, n as Sparkles, o as Instagram, r as Moon, s as GraduationCap, t as Sun, u as Briefcase } from "../_libs/lucide-react.mjs";
+import { o as __toESM } from "../_runtime.mjs";
+import { E as isRedirect, g as useRouter } from "../_libs/@tanstack/react-router+[...].mjs";
+import { i as TSS_SERVER_FUNCTION, l as createServerFn } from "./esm-Dova13aH.mjs";
+import { i as timeline, n as projects, r as technologies, t as personal } from "./portfolio-data-C7lImfDF.mjs";
 import { a as stringType, i as recordType, n as numberType, r as objectType, t as arrayType } from "../_libs/zod.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-COmVXejV.js
+import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
+import { n as useTheme } from "./use-theme-Ds3qvJov.mjs";
+import { t as getServerFnById } from "../__23tanstack-start-server-fn-resolver-C0-ViIFV.mjs";
+import { a as Linkedin, c as Github, d as Award, f as ArrowUp, i as Mail, l as ExternalLink, n as Sparkles, o as Instagram, r as Moon, s as GraduationCap, t as Sun, u as Briefcase } from "../_libs/lucide-react.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-CGeNNUGs.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
+function useServerFn(serverFn) {
+	const router = useRouter();
+	return import_react.useCallback(async (...args) => {
+		try {
+			const res = await serverFn(...args);
+			if (isRedirect(res)) throw res;
+			return res;
+		} catch (err) {
+			if (isRedirect(err)) {
+				err.options._fromLocation = router.stores.location.get();
+				return router.navigate(router.resolveRedirect(err).options);
+			}
+			throw err;
+		}
+	}, [router, serverFn]);
+}
 /** Accessible dark/light theme toggle. */
 function ThemeToggle() {
 	const { theme, toggleTheme } = useTheme();
@@ -593,13 +613,45 @@ function Stat({ label, value }) {
 		})]
 	});
 }
+var createSsrRpc = (functionId) => {
+	const url = "/_serverFn/" + functionId;
+	const serverFnMeta = { id: functionId };
+	const fn = async (...args) => {
+		return (await getServerFnById(functionId, { origin: "server" }))(...args);
+	};
+	return Object.assign(fn, {
+		url,
+		serverFnMeta,
+		[TSS_SERVER_FUNCTION]: true
+	});
+};
+var ContactFormSchema = objectType({
+	name: stringType().min(2).max(100),
+	email: stringType().email(),
+	message: stringType().min(10).max(5e3)
+});
+var submitContactForm = createServerFn({ method: "POST" }).validator((data) => ContactFormSchema.parse(data)).handler(createSsrRpc("b02c23f871ea909bb64c037cd6c2b9f091be94937cf2f19dd4a367cea69977b3"));
 function Contact() {
 	const [status, setStatus] = (0, import_react.useState)("idle");
-	const onSubmit = (e) => {
+	const sendContactForm = useServerFn(submitContactForm);
+	const onSubmit = async (e) => {
 		e.preventDefault();
-		setStatus("sent");
-		setTimeout(() => setStatus("idle"), 3e3);
-		e.target.reset();
+		const form = e.currentTarget;
+		const formData = new FormData(form);
+		setStatus("sending");
+		try {
+			await sendContactForm({ data: {
+				name: String(formData.get("name") ?? ""),
+				email: String(formData.get("email") ?? ""),
+				message: String(formData.get("message") ?? "")
+			} });
+			setStatus("sent");
+			form.reset();
+			setTimeout(() => setStatus("idle"), 3e3);
+		} catch (error) {
+			console.error("Failed to send contact form", error);
+			setStatus("error");
+		}
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		id: "contact",
@@ -676,9 +728,14 @@ function Contact() {
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 							type: "submit",
+							disabled: status === "sending",
 							className: "w-full py-3 bg-foreground text-background font-bold rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors tracking-wide",
-							children: status === "sent" ? "MESSAGE SENT ✓" : "SUBMIT INQUIRY"
-						})
+							children: status === "sending" ? "SENDING..." : status === "sent" ? "MESSAGE SENT ✓" : status === "error" ? "TRY AGAIN" : "SUBMIT INQUIRY"
+						}),
+						status === "error" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-sm text-red-500",
+							children: "Não consegui enviar a mensagem. Verifique as variáveis de ambiente do SMTP."
+						}) : null
 					]
 				})]
 			})
@@ -695,8 +752,8 @@ function SocialIcon({ href, label, children }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
 		href,
 		"aria-label": label,
-		target: "_blank",
-		rel: "noreferrer",
+		target: label === "Email" ? void 0 : "_blank",
+		rel: label === "Email" ? void 0 : "noreferrer",
 		className: "size-10 grid place-items-center rounded-full border border-border bg-surface/60 text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors",
 		children
 	});
