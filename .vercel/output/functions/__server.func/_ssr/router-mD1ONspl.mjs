@@ -4,7 +4,7 @@ import { t as personal } from "./portfolio-data-C7lImfDF.mjs";
 import { n as require_jsx_runtime, r as require_react, t as QueryClientProvider } from "../_libs/react+tanstack__react-query.mjs";
 import { t as ThemeProvider } from "./use-theme-Ds3qvJov.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-BxI1GRC_.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-mD1ONspl.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var styles_default = "/assets/styles-Dr-NHeFo.css";
@@ -176,7 +176,7 @@ var Route$1 = createFileRoute("/sitemap.xml")({ server: { handlers: { GET: async
 		"Cache-Control": "public, max-age=3600"
 	} });
 } } } });
-var $$splitComponentImporter = () => import("./routes-CGeNNUGs.mjs");
+var $$splitComponentImporter = () => import("./routes-CRxw51By.mjs");
 var Route = createFileRoute("/")({
 	head: () => ({
 		meta: [

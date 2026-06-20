@@ -7,7 +7,7 @@ import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tan
 import { n as useTheme } from "./use-theme-Ds3qvJov.mjs";
 import { t as getServerFnById } from "../__23tanstack-start-server-fn-resolver-C0-ViIFV.mjs";
 import { a as Linkedin, c as Github, d as Award, f as ArrowUp, i as Mail, l as ExternalLink, n as Sparkles, o as Instagram, r as Moon, s as GraduationCap, t as Sun, u as Briefcase } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-CGeNNUGs.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-CRxw51By.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function useServerFn(serverFn) {
@@ -130,7 +130,7 @@ function Navbar() {
 		})]
 	});
 }
-var portrait_default = "/assets/portrait-CMh7oHdF.jpg";
+var profile_default = "/assets/profile-CfrKol7a.jpg";
 function Hero() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		id: "top",
@@ -190,8 +190,8 @@ function Hero() {
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute -inset-4 bg-primary/15 blur-3xl rounded-full pointer-events-none" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 					className: "relative w-full aspect-square bg-surface rounded-2xl outline-1 -outline-offset-1 outline-foreground/10 overflow-hidden",
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-						src: portrait_default,
-						alt: `${personal.name} portrait`,
+						src: profile_default,
+						alt: `${personal.name} profile`,
 						width: 1024,
 						height: 1024,
 						className: "w-full h-full object-cover"
@@ -690,7 +690,7 @@ function Contact() {
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Linkedin, { className: "size-4" })
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SocialIcon, {
-								href: personal.socials.email,
+								href: `mailto:${personal.socials.email}`,
 								label: "Email",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Mail, { className: "size-4" })
 							}),
