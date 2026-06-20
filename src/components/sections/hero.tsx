@@ -1,4 +1,4 @@
-import portrait from "@/assets/portrait.jpg";
+import profile from "@/assets/profile.jpg";
 import { personal } from "@/lib/portfolio-data";
 
 export function Hero() {
@@ -50,8 +50,8 @@ export function Hero() {
           <div className="absolute -inset-4 bg-primary/15 blur-3xl rounded-full pointer-events-none" />
           <div className="relative w-full aspect-square bg-surface rounded-2xl outline-1 -outline-offset-1 outline-foreground/10 overflow-hidden">
             <img
-              src={portrait}
-              alt={`${personal.name} portrait`}
+              src={profile}
+              alt={`${personal.name} profile`}
               width={1024}
               height={1024}
               className="w-full h-full object-cover"
