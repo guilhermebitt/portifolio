@@ -1,4 +1,4 @@
-import { o as __toESM } from "../_runtime.mjs";
+import { r as __toESM } from "../_runtime.mjs";
 import { r as require_react } from "./react+tanstack__react-query.mjs";
 //#region node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
@@ -213,76 +213,6 @@ var GraduationCap = createLucideIcon("graduation-cap", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var Instagram = createLucideIcon("instagram", [
-	["rect", {
-		width: "20",
-		height: "20",
-		x: "2",
-		y: "2",
-		rx: "5",
-		ry: "5",
-		key: "2e1cvw"
-	}],
-	["path", {
-		d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z",
-		key: "9exkf1"
-	}],
-	["line", {
-		x1: "17.5",
-		x2: "17.51",
-		y1: "6.5",
-		y2: "6.5",
-		key: "r4j83e"
-	}]
-]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
-var Linkedin = createLucideIcon("linkedin", [
-	["path", {
-		d: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z",
-		key: "c2jq9f"
-	}],
-	["rect", {
-		width: "4",
-		height: "12",
-		x: "2",
-		y: "9",
-		key: "mk3on5"
-	}],
-	["circle", {
-		cx: "4",
-		cy: "4",
-		r: "2",
-		key: "bt5ra8"
-	}]
-]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
-var Mail = createLucideIcon("mail", [["path", {
-	d: "m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7",
-	key: "132q7q"
-}], ["rect", {
-	x: "2",
-	y: "4",
-	width: "20",
-	height: "16",
-	rx: "2",
-	key: "izxlao"
-}]]);
-/**
-* @license lucide-react v0.575.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
 var Moon = createLucideIcon("moon", [["path", {
 	d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
 	key: "kfwtm"
@@ -360,4 +290,4 @@ var Sun = createLucideIcon("sun", [
 	}]
 ]);
 //#endregion
-export { Linkedin as a, Github as c, Award as d, ArrowUp as f, Mail as i, ExternalLink as l, Sparkles as n, Instagram as o, Moon as r, GraduationCap as s, Sun as t, Briefcase as u };
+export { Github as a, Award as c, GraduationCap as i, ArrowUp as l, Sparkles as n, ExternalLink as o, Moon as r, Briefcase as s, Sun as t };

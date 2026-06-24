@@ -38,10 +38,10 @@ export function Hero() {
               View Work
             </a>
             <a
-              href="#contact"
+              href="#about"
               className="px-8 py-3 rounded-lg border border-border-strong text-foreground font-semibold hover:bg-surface transition-colors"
             >
-              Get in touch
+              Learn more
             </a>
           </div>
         </div>

@@ -7,7 +7,6 @@ const NAV_LINKS = [
   { label: "Stack", href: "#stack" },
   { label: "Projects", href: "#projects" },
   { label: "Timeline", href: "#timeline" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export function Navbar() {

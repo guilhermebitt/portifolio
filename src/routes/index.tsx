@@ -6,7 +6,6 @@ import { TechStack } from "@/components/sections/tech-stack";
 import { Projects } from "@/components/sections/projects";
 import { Timeline } from "@/components/sections/timeline";
 import { GitHubSection } from "@/components/sections/github-section";
-import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/footer";
 import { BackToTop } from "@/components/back-to-top";
 import { personal } from "@/lib/portfolio-data";
@@ -60,7 +59,6 @@ function PortfolioPage() {
         <Projects />
         <Timeline />
         <GitHubSection />
-        <Contact />
       </main>
       <Footer />
       <BackToTop />
